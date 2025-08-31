@@ -377,10 +377,11 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Chat container */}
-        <div
-          ref={chatScrollWrapRef}
-          className="flex-1 overflow-y-auto mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5 overscroll-y-contain"
-        >
+<div
+  ref={chatScrollWrapRef}
+  className="overflow-y-auto max-h-[60vh] mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5"
+>
+
           <AnimatePresence initial={false}>
             {messages.map((msg, _idx) => (
               <motion.div

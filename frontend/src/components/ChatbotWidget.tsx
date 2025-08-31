@@ -10,13 +10,7 @@ interface Message {
   from: "user" | "bot" | "system";
 }
 
-const SUGGESTED_QUESTIONS = [
-  "What is ORVN?",
-  "Tell me about your services",
-  "How can I join ORVN?",
-  "What campuses are available?",
-  "How do I subscribe to the newsletter?",
-];
+// Removed SUGGESTED_QUESTIONS since it was unused
 
 const ChatbotWidget: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +21,6 @@ const ChatbotWidget: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const { showToast } = useToast();
 
-  // Intro messages
   useEffect(() => {
     setMessages([
       { text: "👋 Hey! I’m ORVI, your smart ORVN AI assistant.", from: "bot" },
@@ -40,7 +33,6 @@ const ChatbotWidget: React.FC = () => {
     ]);
   }, []);
 
-  // Auto-scroll to latest
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping, isThinking]);
@@ -96,7 +88,6 @@ const ChatbotWidget: React.FC = () => {
 
   return (
     <>
-      {/* Floating button */}
       <button
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 z-50 bg-primary hover:bg-highlight text-white p-4 rounded-full shadow-lg transition"
@@ -105,7 +96,6 @@ const ChatbotWidget: React.FC = () => {
         {open ? <XIcon size={22} /> : <MessageCircle size={22} />}
       </button>
 
-      {/* Chat window */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -117,13 +107,11 @@ const ChatbotWidget: React.FC = () => {
                        bg-[#140b29]/95 backdrop-blur-md rounded-2xl shadow-2xl 
                        border border-white/10 flex flex-col overflow-hidden z-50"
           >
-            {/* Header */}
             <div className="px-4 py-3 bg-[#3a0088] text-white font-semibold flex items-center justify-between">
               ORVI — ORVN AI Assistant
               {isThinking && <Sparkles size={16} className="ml-2 animate-pulse" />}
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               <AnimatePresence initial={false}>
                 {messages.map((msg, idx) => (
@@ -145,7 +133,6 @@ const ChatbotWidget: React.FC = () => {
                   </motion.div>
                 ))}
 
-                {/* Typing dots */}
                 {isTyping && (
                   <motion.div
                     key="typing"
@@ -163,7 +150,6 @@ const ChatbotWidget: React.FC = () => {
               <div ref={scrollRef} />
             </div>
 
-            {/* Input */}
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -186,8 +172,7 @@ const ChatbotWidget: React.FC = () => {
               </button>
             </form>
 
-            {/* Social links */}
-           <div className="flex justify-center gap-4 py-2 bg-[#140b29]/90">
+            <div className="flex justify-center gap-4 py-2 bg-[#140b29]/90">
               {socialLinks.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noreferrer" className="text-white">
                   {s.icon}

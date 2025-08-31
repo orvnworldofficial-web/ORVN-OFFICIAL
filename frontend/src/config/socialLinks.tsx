@@ -5,13 +5,13 @@ export const socialLinks = [
   {
     name: "Instagram",
     icon: <InstagramIcon size={22} />,
-    url: "https://instagram.com/orvn",
+    url: "https://www.instagram.com/orvnlabs?igsh=NTlvamU1cm5iZW04",
     color: "#E1306C",
   },
   {
     name: "TikTok",
     icon: <FaTiktok size={22} />,
-    url: "https://tiktok.com/@orvn",
+    url: "https://www.tiktok.com/@orvnlabs?_t=ZS-8zLYUssAnpP&_r=1",
     color: "#69C9D0",
   },
   {

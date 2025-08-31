@@ -1,8 +1,7 @@
 // src/pages/Contact.tsx
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
-import { FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
 import { Send, Sparkles, RotateCcw, Trash2, ArrowDown } from "lucide-react";
 import { useToast } from "../components/ToastProvider";
 import { socialLinks } from "../config/socialLinks";

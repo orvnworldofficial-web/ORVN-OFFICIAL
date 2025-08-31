@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Map of display names to routes
   const links: { name: string; path: string }[] = [
@@ -12,6 +13,15 @@ const Navbar: React.FC = () => {
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
+
+  // Track scroll for logo shrink
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.nav
@@ -22,7 +32,21 @@ const Navbar: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         {/* Logo */}
-        <h1 className="text-2xl font-heading text-accent drop-shadow-lg">ORVN</h1>
+        <NavLink to="/" className="flex items-center">
+          <motion.img
+            src="https://ik.imagekit.io/y71swiiapj/WhatsApp%20Image%202025-08-25%20at%2016.20.16_aecde493.jpg?updatedAt=1756675060080"
+            alt="ORVN Logo"
+            className="object-contain"
+            srcSet="
+              https://ik.imagekit.io/y71swiiapj/WhatsApp%20Image%202025-08-25%20at%2016.20.16_aecde493.jpg?tr=w-64 64w,
+              https://ik.imagekit.io/y71swiiapj/WhatsApp%20Image%202025-08-25%20at%2016.20.16_aecde493.jpg?tr=w-128 128w,
+              https://ik.imagekit.io/y71swiiapj/WhatsApp%20Image%202025-08-25%20at%2016.20.16_aecde493.jpg?tr=w-256 256w
+            "
+            sizes="(max-width: 768px) 48px, 64px"
+            animate={{ height: scrolled ? 36 : 48 }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          />
+        </NavLink>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 text-neutral font-medium">

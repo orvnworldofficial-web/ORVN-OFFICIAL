@@ -1,4 +1,3 @@
-// src/pages/Contact.tsx
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
@@ -380,7 +379,7 @@ const Contact: React.FC = () => {
         {/* Chat container */}
         <div
           ref={chatScrollWrapRef}
-          className="flex-1 overflow-y-auto mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5"
+          className="flex-1 overflow-y-auto mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5 overscroll-y-contain"
         >
           <AnimatePresence initial={false}>
             {messages.map((msg, _idx) => (

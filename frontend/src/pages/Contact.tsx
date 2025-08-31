@@ -83,7 +83,7 @@ const Contact: React.FC = () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
-      mountRef.current.clientWidth / Math全世界: Math.max(1, mountRef.current.clientHeight),
+      mountRef.current.clientWidth / Math.max(1, mountRef.current.clientHeight),
       0.1,
       1000
     );
@@ -418,7 +418,7 @@ const Contact: React.FC = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: reducedMotion ? 0 : 0.2 }}
-                className="bg-[#3a0088] text-white px-4 py-3 rounded-2xl max-w-[50%] self-start flex items-center gap-2 shadow-md"
+                className="bg-[#3t8] text-white px-4 py-3 rounded-2xl max-w-[50%] self-start flex items-center gap-2 shadow-md"
                 aria-label="ORVI is typing"
               >
                 <span className="sr-only">ORVI is typing</span>
@@ -439,7 +439,7 @@ const Contact: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               onClick={scrollToBottom}
-              className="self-end mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-white/10 hover: bg-white/20 text-white/95 transition"
+              className="self-end mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-white/10 hover:bg-white/20 text-white/95 transition"
               aria-label="Scroll to latest messages"
             >
               <ArrowDown size={16} />

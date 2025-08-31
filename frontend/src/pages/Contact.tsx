@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
         id: `m-${now}-b`,
         text:
           "Ask me about ORVN, our mission, services, campuses, or how to join. " +
-          "You can use the suggested questions below to get started. 💜",
+          "You can use the suggested questions above to get started. 💜",
         from: "bot",
         ts: now + 1,
       },

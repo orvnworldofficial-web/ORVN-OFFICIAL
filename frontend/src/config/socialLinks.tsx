@@ -1,5 +1,5 @@
 import { InstagramIcon, LinkedinIcon, X } from "lucide-react";
-import { FaTiktok, FaThreads } from "react-icons/fa6";
+import { FaTiktok, FaFacebook } from "react-icons/fa6";
 
 export const socialLinks = [
   {
@@ -27,9 +27,9 @@ export const socialLinks = [
     color: "#1DA1F2",
   },
   {
-    name: "Threads",
-    icon: <FaThreads size={22} />,
-    url: "https://threads.net/@orvn",
-    color: "#000000",
+    name: "Facebook",
+    icon: <FaFacebook size={22} />,
+    url: "https://www.facebook.com/share/1AjKWTA1rK/",
+    color: "#1877F2",
   },
 ];

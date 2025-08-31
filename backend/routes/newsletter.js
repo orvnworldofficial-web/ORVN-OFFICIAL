@@ -1,7 +1,7 @@
 // routes/newsletter.js
 import express from "express";
 import Subscriber from "../models/Subscriber.js";
-import { sendWelcomeEmail } from "../utils/mailer.js";
+import { sendComplimentaryEmail } from "../utils/mailer.js"; // ✅ updated import
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ router.post("/subscribe", async (req, res) => {
     await sub.save();
 
     // Send branded welcome email
-    await sendWelcomeEmail(email);
+    await sendComplimentaryEmail(email); // ✅ updated call
 
     return res.status(200).json({ message: "Subscribed successfully" });
   } catch (err) {

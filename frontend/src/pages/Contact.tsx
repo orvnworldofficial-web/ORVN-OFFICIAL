@@ -1,11 +1,12 @@
 // src/pages/Contact.tsx
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
 import { FaInstagram, FaLinkedin, FaTiktok } from "react-icons/fa";
-import { X, Send, Sparkles, RotateCcw, Trash2, ArrowDown } from "lucide-react";
+import { Send, Sparkles, RotateCcw, Trash2, ArrowDown } from "lucide-react";
 import { useToast } from "../components/ToastProvider";
 import { socialLinks } from "../config/socialLinks";
+
 
 /**
  * Suggested quick prompts for users to click.
@@ -425,7 +426,7 @@ const Contact: React.FC = () => {
           className="flex-1 overflow-y-auto mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5"
         >
           <AnimatePresence initial={false}>
-            {messages.map((msg, idx) => (
+            {messages.map((msg, _idx) => (
               <motion.div
                 key={msg.id}
                 role="text"

@@ -471,7 +471,7 @@ const About: React.FC = () => {
                 href={s.url}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={s.label}
+                
                 className="group"
               >
                 <div className="w-16 h-16 rounded-2xl bg-secondary/80 backdrop-blur flex items-center justify-center shadow-glow transition transform group-hover:scale-110">

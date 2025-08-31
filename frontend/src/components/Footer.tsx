@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useToast } from "./ToastProvider"; 
-import { socialLinks } from "../config/socialLinks"; // ✅ centralized config
+import { socialLinks } from "../config/socialLinks";
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -53,7 +53,7 @@ const Footer: React.FC = () => {
             Automating growth through AI, Data & Branding. 💡 1+1=3 — We will do great things!
           </p>
 
-          {/* Social Links */}
+          {/* Social Links (all from socialLinks.tsx) */}
           <div className="flex space-x-4 mt-4">
             {socialLinks.map((s, i) => (
               <motion.a

@@ -1,11 +1,10 @@
 // src/pages/Contact.tsx
-import { useState, useEffect, useRef, useMemo} from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as THREE from "three";
-import { Send, Sparkles, RotateCcw, Trash2, ArrowDown } from "lucide-react";
+import { Send, Sparkles, ArrowDown } from "lucide-react";
 import { useToast } from "../components/ToastProvider";
 import { socialLinks } from "../config/socialLinks";
-
 
 /**
  * Suggested quick prompts for users to click.
@@ -295,20 +294,6 @@ const Contact: React.FC = () => {
     }
   };
 
-  // Clear conversation
-  const clearChat = () => {
-    const now = Date.now();
-    setMessages([
-      { id: `m-${now}-a`, text: "👋 Chat cleared. I’m still here if you need anything!", from: "system", ts: now },
-    ]);
-    setChatting(false);
-  };
-
-  // Retry last user message
-  const retryLast = () => {
-    if (lastUserText) handleSend(lastUserText);
-  };
-
   return (
     <div className="bg-secondary text-accent min-h-screen flex flex-col relative overflow-x-hidden">
       {/* 3D Background */}
@@ -391,31 +376,6 @@ const Contact: React.FC = () => {
         <div className="flex items-center justify-between mb-3">
           <div className="text-white/80 text-sm">
             {messages.length} {messages.length === 1 ? "message" : "messages"}
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={retryLast}
-              disabled={!lastUserText || isThinking}
-              className={cx(
-                "inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm transition",
-                "bg-[#3a0088]/70 hover:bg-[#3a0088] text-white/95",
-                (!lastUserText || isThinking) && "opacity-50 cursor-not-allowed"
-              )}
-              aria-label="Retry last question"
-              title="Retry last question"
-            >
-              <RotateCcw size={16} />
-              Retry
-            </button>
-            <button
-              onClick={clearChat}
-              className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-[#9b59b6]/70 hover:bg-[#9b59b6] text-white/95 transition"
-              aria-label="Clear conversation"
-              title="Clear conversation"
-            >
-              <Trash2 size={16} />
-              Clear
-            </button>
           </div>
         </div>
 

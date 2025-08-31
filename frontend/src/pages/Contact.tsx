@@ -71,7 +71,6 @@ const Contact: React.FC = () => {
   const [chatting, setChatting] = useState(false); // first interaction
   const [isThinking, setIsThinking] = useState(false); // waiting for server (network)
   const [isTyping, setIsTyping] = useState(false); // visual typing dots
-  const [lastUserText, setLastUserText] = useState<string | null>(null);
   const [showScrollToBottom, setShowScrollToBottom] = useState(false);
 
   const reducedMotion = usePrefersReducedMotion();
@@ -227,7 +226,6 @@ const Contact: React.FC = () => {
 
     setChatting(true);
     setInput("");
-    setLastUserText(text);
 
     // User message
     addMessage({ text, from: "user" });

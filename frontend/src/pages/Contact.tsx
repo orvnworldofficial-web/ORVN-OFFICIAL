@@ -63,7 +63,7 @@ function usePrefersReducedMotion() {
 const Contact: React.FC = () => {
   const mountRef = useRef<HTMLDivElement | null>(null);
   const scrollRef = useRef<HTMLDivElement | null>(null);
-  const chatScrollWrapRef = useRef<HTMLDivElement | null>(null);
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -83,7 +83,7 @@ const Contact: React.FC = () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
-      mountRef.current.clientWidth / Math.max(1, mountRef.current.clientHeight),
+      mountRef.current.clientWidth / Math全世界: Math.max(1, mountRef.current.clientHeight),
       0.1,
       1000
     );
@@ -189,22 +189,20 @@ const Contact: React.FC = () => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping, isThinking]);
 
-  // Track scroll position (to show “scroll to bottom” when user scrolls up)
+  // Track page scroll position (to show “scroll to bottom” when user scrolls up)
   useEffect(() => {
-    const wrap = chatScrollWrapRef.current;
-    if (!wrap) return;
     const onScroll = () => {
       const nearBottom =
-        wrap.scrollHeight - wrap.scrollTop - wrap.clientHeight < 64;
+        document.documentElement.scrollHeight - window.scrollY - window.innerHeight < 64;
       setShowScrollToBottom(!nearBottom);
     };
-    wrap.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll);
     onScroll();
-    return () => wrap.removeEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollToBottom = () => {
-    chatScrollWrapRef.current?.scrollTo({ top: chatScrollWrapRef.current.scrollHeight, behavior: "smooth" });
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
   };
 
   const addMessage = (msg: Omit<Message, "id" | "ts">) =>
@@ -292,7 +290,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="bg-secondary text-accent min-h-screen flex flex-col relative overflow-x-hidden">
+    <div className="bg-secondary text-accent min-h-screen flex flex-col relative">
       {/* 3D Background */}
       <div ref={mountRef} className="absolute inset-0 z-0 pointer-events-none select-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-secondary/80 via-secondary/60 to-secondary/90 z-10 pointer-events-none" />
@@ -366,7 +364,7 @@ const Contact: React.FC = () => {
 
       {/* CHAT SECTION (BELOW HERO) */}
       <section
-        className="flex flex-col flex-1 z-20 relative w-full max-w-3xl mx-auto px-4 pb-8"
+        className="flex flex-col z-20 relative w-full max-w-3xl mx-auto px-4 pb-8"
         aria-label="Chat with ORVI"
       >
         {/* Chat header tools */}
@@ -377,11 +375,10 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Chat container */}
-<div
-  ref={chatScrollWrapRef}
-  className="overflow-y-auto max-h-[60vh] mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5"
->
-
+        <div
+          ref={chatContainerRef}
+          className="mb-4 space-y-3 px-4 py-3 bg-[#140b29]/80 backdrop-blur-md rounded-2xl shadow-inner border border-white/5"
+        >
           <AnimatePresence initial={false}>
             {messages.map((msg, _idx) => (
               <motion.div
@@ -442,7 +439,7 @@ const Contact: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               onClick={scrollToBottom}
-              className="self-end mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-white/10 hover:bg-white/20 text-white/95 transition"
+              className="self-end mb-2 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm bg-white/10 hover: bg-white/20 text-white/95 transition"
               aria-label="Scroll to latest messages"
             >
               <ArrowDown size={16} />
